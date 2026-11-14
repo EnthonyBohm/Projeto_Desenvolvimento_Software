@@ -1,0 +1,17 @@
+O trabalho consiste em um mapa cultural onde o usuário comum pode acessar informações de eventos, locais de eventos e até mesmo de artistas presentes no mapa cultural.
+Inicialmente, a visualização do mapa vai ser deixada de lado, focando apenas nas funcionalidades.
+
+As visualizações presentes são de Usuário e organizador de eventos.
+
+Cabe ao usuário:
+- Checar o mapa cultural e procurar por eventos ou locais de eventos próximo a ele.
+    - Nos locais de evento, o usuário irá ver a listagem de todos os eventos que estão marcados para acontecer naquele lugar. Podendo assim, verificar individualmente cada evento.
+    - Nos eventos o usuário pode:
+        - Confirmar a presença.
+        - Acessar a página de confirmar pagamento (em caso de ter uma.).
+        - Verificar os artistas que participarão do evento.
+
+Cabe ao organizador:
+- Cadastrar novos locais de evento e consequentemente editá-los, se necessário
+- Cadastrar novos eventos em um local de evento X e consequentemente editá-los, se necessário.
+- Cadastrar novos artistas ou acessar artistas existentes para vinculá-los a Shows.
