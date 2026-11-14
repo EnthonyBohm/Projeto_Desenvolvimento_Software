@@ -4,15 +4,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 
 @Entity
 @Table(name = "usuario_registrado")
-@Data
+@Getter @Setter @NoArgsConstructor
 public class UsuarioRegistrado {
 
     @Id
@@ -27,7 +24,5 @@ public class UsuarioRegistrado {
     @ToString.Exclude
     @Column(name = "senha_hash")
     private String senhaHash;
-
-    public UsuarioRegistrado() { }
 
 }
