@@ -24,7 +24,7 @@ public class UsuarioController {
 
 
     @GetMapping
-    public List<UsuarioDTO> listarTods() {
+    public List<UsuarioDTO> listarTodos() {
         return service.listarTodos();
     }
 
