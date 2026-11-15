@@ -3,9 +3,13 @@ package br.edu.ufpel.mapacultural.Repository;
 import br.edu.ufpel.mapacultural.Model.UsuarioRegistrado;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface UsuarioRepository extends JpaRepository<UsuarioRegistrado, Integer> {
 
     boolean existsByEmail(String email);
+
+    Optional<UsuarioRegistrado> findByEmail(String email);
 
 }
 
