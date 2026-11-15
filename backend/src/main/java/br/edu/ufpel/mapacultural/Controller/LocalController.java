@@ -2,7 +2,9 @@ package br.edu.ufpel.mapacultural.Controller;
 
 
 import br.edu.ufpel.mapacultural.Model.Local;
+import br.edu.ufpel.mapacultural.Service.EventoService;
 import br.edu.ufpel.mapacultural.Service.LocalService;
+import br.edu.ufpel.mapacultural.dto.EventoDTO;
 import br.edu.ufpel.mapacultural.dto.LocalCadastroDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +19,11 @@ import java.util.List;
 public class LocalController {
 
     private final LocalService service;
+    private final EventoService eventoService;
 
-    public LocalController(LocalService service) {
+    public LocalController(LocalService service, EventoService eventoService) {
         this.service = service;
+        this.eventoService = eventoService;
     }
 
 //===========================       GET       ========================
@@ -31,6 +35,17 @@ public class LocalController {
     public ResponseEntity<Local> buscarPorId(@PathVariable Integer id)
     {
         return service.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+    @GetMapping("/{id}/eventos")
+    public List<EventoDTO> listarEventos(@PathVariable Integer id) { return eventoService.listarPorLocal(id); }
+
+    @GetMapping("/{id}/eventos/{eventoId}")
+    public ResponseEntity<EventoDTO> buscarEvento (@PathVariable Integer id, @PathVariable Integer eventoId)
+    {
+        return eventoService
+                .buscarPorEvento(id, eventoId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

@@ -51,15 +51,32 @@ public class EventoService {
 
 //======================    GET     ========================
     @Transactional(readOnly = true)
-    public List<EventoDTO> listarTodos() {
+    public List<EventoDTO> listarTodos()
+    {
         return eventoRepository.findAll()
                 .stream()
                 .map(this::convertToDTO)
                 .toList();
     }
     @Transactional(readOnly = true)
-    public Optional<EventoDTO> buscaPorId(Integer id) {
+    public Optional<EventoDTO> buscaPorId(Integer id)
+    {
         return eventoRepository.findById(id)
+                .map(this::convertToDTO);
+    }
+    @Transactional(readOnly = true)
+    public List<EventoDTO> listarPorLocal(Integer localId)
+    {
+        return eventoRepository.findByLocalLocalId(localId)
+                .stream()
+                .map(this::convertToDTO)
+                .toList();
+    }
+    @Transactional(readOnly = true)
+    public Optional<EventoDTO> buscarPorEvento(Integer localId, Integer eventoId)
+    {
+        return eventoRepository
+                .findByLocalLocalIdAndEventoId(localId, eventoId)
                 .map(this::convertToDTO);
     }
 //======================    POST     ========================

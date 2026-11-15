@@ -1,6 +1,7 @@
 package br.edu.ufpel.mapacultural.Service;
 
 import br.edu.ufpel.mapacultural.Model.Local;
+import br.edu.ufpel.mapacultural.Repository.EventoRepository;
 import br.edu.ufpel.mapacultural.Repository.LocalRepository;
 import br.edu.ufpel.mapacultural.dto.LocalCadastroDTO;
 import org.springframework.http.HttpStatus;
@@ -14,20 +15,22 @@ import java.util.Optional;
 @Service
 public class LocalService {
 
-    private final LocalRepository repository;
+    private final LocalRepository localRepository;
+    private final EventoRepository eventoRepository;
 
-    public LocalService(LocalRepository repository) {
-        this.repository = repository;
+    public LocalService(LocalRepository localRepository, EventoRepository eventoRepository) {
+        this.localRepository = localRepository;
+        this.eventoRepository = eventoRepository;
     }
 
-//===========================       GET       ========================
+    //===========================       GET       ========================
     @Transactional(readOnly = true)
     public List<Local> listarTodos() {
-        return repository.findAll();
+        return localRepository.findAll();
     }
     @Transactional(readOnly = true)
     public Optional<Local> buscarPorId(Integer id) {
-        return repository.findById(id);
+        return localRepository.findById(id);
     }
 
 //===========================       POST       ========================
@@ -39,7 +42,7 @@ public class LocalService {
 //           throw new ResponseStatusException(HttpStatus.CONFLICT, "Local já existe");
 //        }
 
-        repository.existsByNomeAndEndereco(dto.nome(), dto.endereco());
+        localRepository.existsByNomeAndEndereco(dto.nome(), dto.endereco());
 
 //        repository.existsByNome(dto.nome());
 
@@ -48,7 +51,7 @@ public class LocalService {
         local.setEndereco(dto.endereco());
         local.setCapacidade(dto.capacidade());
 
-        Local local_salvo = repository.save(local);
+        Local local_salvo = localRepository.save(local);
 
         return local_salvo;
     }
@@ -59,9 +62,9 @@ public class LocalService {
     @Transactional
     public void excluir (Integer id)
     {
-        Local local = repository.findById(id)
+        Local local = localRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Organizador não encontrado"));
 
-        repository.delete(local);
+        localRepository.delete(local);
     }
 }

@@ -3,10 +3,7 @@ package br.edu.ufpel.mapacultural.Controller;
 import br.edu.ufpel.mapacultural.Model.Evento;
 import br.edu.ufpel.mapacultural.Repository.EventoRepository;
 import br.edu.ufpel.mapacultural.Service.EventoService;
-import br.edu.ufpel.mapacultural.dto.EventoCadastroDTO;
-import br.edu.ufpel.mapacultural.dto.EventoDTO;
-import br.edu.ufpel.mapacultural.dto.OrganizadorDTO;
-import br.edu.ufpel.mapacultural.dto.UsuarioDTO;
+import br.edu.ufpel.mapacultural.dto.*;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +31,6 @@ public class EventoController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
 //======================    POST     ========================
     @PostMapping
     public ResponseEntity<EventoDTO> cadastrar (@Valid @RequestBody EventoCadastroDTO dto)
