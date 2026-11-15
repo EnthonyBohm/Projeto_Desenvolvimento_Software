@@ -9,9 +9,9 @@ import lombok.*;
 public class Local {
 
     @Id
-    @Column(name = "local_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer         local_id;
+    @Column(name = "local_id")
+    private Integer localId;
 
     private String          nome;
     private String          endereco;

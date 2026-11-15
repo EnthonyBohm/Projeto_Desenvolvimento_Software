@@ -25,7 +25,7 @@ public class OrganizadorController {
     }
 
 
-//=========================== Métodos GET ========================
+//===========================       GET       ========================
     @GetMapping
     public List<OrganizadorDTO> listarTodos() { return service.listarTodos();}
     @GetMapping("/{id}")
@@ -36,7 +36,7 @@ public class OrganizadorController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-//========================== Métodos POST ========================
+//==========================    POST     ========================
     @PostMapping
     public ResponseEntity<OrganizadorDTO> cadastrar(@Valid @RequestBody OrganizadorCadastroDTO dto)
     {

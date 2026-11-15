@@ -54,6 +54,7 @@ public class UsuarioService {
     }
 
 //====================== Métodos POST ========================
+    @Transactional
     public UsuarioDTO cadastrar (UsuarioCadastroDTO dto)
     {
         if (repository.existsByEmail(dto.email())) {

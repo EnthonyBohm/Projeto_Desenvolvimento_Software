@@ -4,4 +4,9 @@ import br.edu.ufpel.mapacultural.Model.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LocalRepository extends JpaRepository<Local, Integer> {
+
+//    boolean existsByNomeAndEndereco(String nome, String endereco);
+
+    boolean existsByNomeAndEndereco(String nome, String endereco);
+
 }

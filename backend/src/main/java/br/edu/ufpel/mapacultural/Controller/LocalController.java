@@ -2,15 +2,14 @@ package br.edu.ufpel.mapacultural.Controller;
 
 
 import br.edu.ufpel.mapacultural.Model.Local;
-import br.edu.ufpel.mapacultural.Repository.LocalRepository;
-import br.edu.ufpel.mapacultural.Service.EventoService;
 import br.edu.ufpel.mapacultural.Service.LocalService;
+import br.edu.ufpel.mapacultural.dto.LocalCadastroDTO;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -23,18 +22,40 @@ public class LocalController {
         this.service = service;
     }
 
+//===========================       GET       ========================
     @GetMapping
     public List<Local> listarTodos() {
         return service.listarTodos();
     }
-
     @GetMapping("/{id}")
-    public ResponseEntity<Local> buscarPorId(@PathVariable Integer id){
+    public ResponseEntity<Local> buscarPorId(@PathVariable Integer id)
+    {
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
+//===========================       POST       ========================
+    @PostMapping
+    public ResponseEntity<Local> cadastrar (@Valid @RequestBody LocalCadastroDTO dto)
+    {
+        Local local = service.cadastrar(dto);
 
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(local.getLocalId())
+                .toUri();
+        return ResponseEntity.created(location).body(local);
+    }
+
+//========================= DELETE ========================================
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir (@PathVariable Integer id)
+    {
+        service.excluir(id);
+
+        return ResponseEntity.noContent().build();
+    }
 
 }

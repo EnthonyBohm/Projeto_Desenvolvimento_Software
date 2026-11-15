@@ -13,7 +13,7 @@ public class Evento {
     @Id
     @Column ( name = "evento_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer             evento_id;
+    private Integer eventoId;
 
     private String              nome;
     private LocalDate           data_evento;
