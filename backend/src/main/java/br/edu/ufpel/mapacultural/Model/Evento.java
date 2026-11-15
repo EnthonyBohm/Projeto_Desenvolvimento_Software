@@ -12,6 +12,7 @@ public class Evento {
 
     @Id
     @Column ( name = "evento_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer             evento_id;
 
     private String              nome;

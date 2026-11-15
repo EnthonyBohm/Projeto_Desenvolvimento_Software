@@ -25,7 +25,6 @@ public class ArtistaController {
         this.service = service;
     }
 
-
     @GetMapping
     public List<ArtistaDTO> listarTodos() {return service.listarTodos();}
 

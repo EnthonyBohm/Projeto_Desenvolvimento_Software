@@ -1,9 +1,6 @@
 package br.edu.ufpel.mapacultural.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 
@@ -15,6 +12,7 @@ public class UsuarioRegistrado {
     @Id
     @Column(name = "usuario_id")
     @ToString.Exclude
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer usuarioId;
 
     private String email;
