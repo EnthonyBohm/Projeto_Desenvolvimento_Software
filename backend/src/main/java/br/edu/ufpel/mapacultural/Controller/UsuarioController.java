@@ -23,20 +23,21 @@ public class UsuarioController {
         this.service = service;
     }
 
-
+    //=======================    GET     ========================
     @GetMapping
     public List<UsuarioDTO> listarTodos()
     {
         return service.listarTodos();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDTO> buscarPorId(@PathVariable Integer id)
+    public ResponseEntity<UsuarioDTO> buscarPorId(@PathVariable("id") Integer id)
     {
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    //=======================    POST     ========================
     @PostMapping
     public ResponseEntity<UsuarioDTO> cadastrar ( @Valid @RequestBody UsuarioCadastroDTO dto )
     {
@@ -50,9 +51,9 @@ public class UsuarioController {
         return ResponseEntity.created(location).body(usuario);
     }
 
-
+    //=======================    DELETE     ========================
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable Integer id)
+    public ResponseEntity<Void> excluir(@PathVariable("id") Integer id)
     {
         service.excluir(id);
 

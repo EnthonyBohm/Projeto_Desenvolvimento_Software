@@ -25,7 +25,7 @@ public class ArtistaService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    private ArtistaDTO convertoToDTO(Artista artista){
+    public ArtistaDTO convertoToDTO(Artista artista){
         return new ArtistaDTO(
                 artista.getUsuario().getUsuarioId(),
                 artista.getUsuario().getEmail(),

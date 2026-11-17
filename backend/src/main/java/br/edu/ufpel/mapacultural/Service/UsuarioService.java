@@ -27,7 +27,7 @@ public class UsuarioService {
     }
 
 
-    private UsuarioDTO convertToDTO( UsuarioRegistrado usuario )
+    public UsuarioDTO convertToDTO( UsuarioRegistrado usuario )
     {
         return new UsuarioDTO(
                 usuario.getUsuarioId(),

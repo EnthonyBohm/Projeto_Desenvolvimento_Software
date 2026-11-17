@@ -32,17 +32,17 @@ public class LocalController {
         return service.listarTodos();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Local> buscarPorId(@PathVariable Integer id)
+    public ResponseEntity<Local> buscarPorId(@PathVariable("id") Integer id)
     {
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
     @GetMapping("/{id}/eventos")
-    public List<EventoDTO> listarEventos(@PathVariable Integer id) { return eventoService.listarPorLocal(id); }
+    public List<EventoDTO> listarEventos(@PathVariable("id") Integer id) { return eventoService.listarPorLocal(id); }
 
     @GetMapping("/{id}/eventos/{eventoId}")
-    public ResponseEntity<EventoDTO> buscarEvento (@PathVariable Integer id, @PathVariable Integer eventoId)
+    public ResponseEntity<EventoDTO> buscarEvento (@PathVariable("id") Integer id, @PathVariable("eventoId") Integer eventoId)
     {
         return eventoService
                 .buscarPorEvento(id, eventoId)
@@ -66,7 +66,7 @@ public class LocalController {
 
 //========================= DELETE ========================================
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir (@PathVariable Integer id)
+    public ResponseEntity<Void> excluir (@PathVariable("id") Integer id)
     {
         service.excluir(id);
 

@@ -28,8 +28,9 @@ public class OrganizadorController {
 //===========================       GET       ========================
     @GetMapping
     public List<OrganizadorDTO> listarTodos() { return service.listarTodos();}
+
     @GetMapping("/{id}")
-    public ResponseEntity<OrganizadorDTO> buscaPorId(@PathVariable Integer id)
+    public ResponseEntity<OrganizadorDTO> buscaPorId(@PathVariable("id") Integer id)
     {
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
@@ -54,7 +55,7 @@ public class OrganizadorController {
 
 //========================= DELETE ========================================
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir (@PathVariable Integer id)
+    public ResponseEntity<Void> excluir (@PathVariable("id") Integer id)
     {
         service.excluir(id);
 

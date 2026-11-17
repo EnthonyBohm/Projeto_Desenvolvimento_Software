@@ -31,7 +31,7 @@ public class EventoService {
     }
 
 
-    private EventoDTO convertToDTO (Evento evento) {
+    public EventoDTO convertToDTO (Evento evento) {
         return new EventoDTO(
                 evento.getEventoId(),
                 evento.getNome(),

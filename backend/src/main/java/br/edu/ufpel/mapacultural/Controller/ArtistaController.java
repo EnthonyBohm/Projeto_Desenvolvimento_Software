@@ -31,9 +31,10 @@ public class ArtistaController {
 
 //=======================    GET     ========================
     @GetMapping
-    public List<ArtistaDTO> listarTodos() {return service.listarTodos();}
+    public List<ArtistaDTO> listarTodos() { return service.listarTodos(); }
+
     @GetMapping("/{id}")
-    public ResponseEntity<ArtistaDTO> buscarPorId(@PathVariable Integer id)
+    public ResponseEntity<ArtistaDTO> buscarPorId(@PathVariable("id") Integer id)
     {
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
@@ -54,10 +55,9 @@ public class ArtistaController {
         return ResponseEntity.created(location).body(artista);
     }
 
-
 //========================   DELETE   ========================
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable Integer id)
+    public ResponseEntity<Void> excluir(@PathVariable("id") Integer id)
     {
         service.excluir(id);
         return ResponseEntity.noContent().build();

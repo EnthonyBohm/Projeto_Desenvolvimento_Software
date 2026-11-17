@@ -26,12 +26,15 @@ public class EventoController {
 //======================    GET     ========================
     @GetMapping
     public List<EventoDTO> listarTodos() {return service.listarTodos(); }
+
     @GetMapping("/{id}")
-    public ResponseEntity<EventoDTO> buscarPorId(@PathVariable Integer id){
+    public ResponseEntity<EventoDTO> buscarPorId(@PathVariable("id") Integer id)
+    {
         return service.buscaPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
 //======================    POST     ========================
     @PostMapping
     public ResponseEntity<EventoDTO> cadastrar (@Valid @RequestBody EventoCadastroDTO dto)
@@ -48,7 +51,7 @@ public class EventoController {
 
 //========================= DELETE ========================================
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir (@PathVariable Integer id)
+    public ResponseEntity<Void> excluir (@PathVariable("id") Integer id)
     {
         service.excluir(id);
 
