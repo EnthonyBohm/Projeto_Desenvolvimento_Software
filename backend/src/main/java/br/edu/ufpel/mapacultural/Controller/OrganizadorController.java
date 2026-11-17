@@ -1,11 +1,9 @@
 package br.edu.ufpel.mapacultural.Controller;
 
 
-import br.edu.ufpel.mapacultural.Model.Organizador;
-import br.edu.ufpel.mapacultural.Repository.OrganizadorRepository;
 import br.edu.ufpel.mapacultural.Service.OrganizadorService;
-import br.edu.ufpel.mapacultural.dto.OrganizadorCadastroDTO;
-import br.edu.ufpel.mapacultural.dto.OrganizadorDTO;
+import br.edu.ufpel.mapacultural.Model.dto.Request.OrganizadorCadastroDTO;
+import br.edu.ufpel.mapacultural.Model.dto.Response.OrganizadorDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/organizadores")
+@RequestMapping("/api/organizadores")
 public class OrganizadorController {
 
     private final OrganizadorService service;

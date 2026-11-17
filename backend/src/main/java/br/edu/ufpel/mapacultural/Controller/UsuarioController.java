@@ -1,10 +1,8 @@
 package br.edu.ufpel.mapacultural.Controller;
 
-import br.edu.ufpel.mapacultural.Model.UsuarioRegistrado;
-import br.edu.ufpel.mapacultural.Repository.UsuarioRepository;
 import br.edu.ufpel.mapacultural.Service.UsuarioService;
-import br.edu.ufpel.mapacultural.dto.UsuarioCadastroDTO;
-import br.edu.ufpel.mapacultural.dto.UsuarioDTO;
+import br.edu.ufpel.mapacultural.Model.dto.Request.UsuarioCadastroDTO;
+import br.edu.ufpel.mapacultural.Model.dto.Response.UsuarioDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +12,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
     private final UsuarioService service;

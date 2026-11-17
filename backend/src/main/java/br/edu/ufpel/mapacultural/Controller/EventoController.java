@@ -1,9 +1,8 @@
 package br.edu.ufpel.mapacultural.Controller;
 
-import br.edu.ufpel.mapacultural.Model.Evento;
-import br.edu.ufpel.mapacultural.Repository.EventoRepository;
 import br.edu.ufpel.mapacultural.Service.EventoService;
-import br.edu.ufpel.mapacultural.dto.*;
+import br.edu.ufpel.mapacultural.Model.dto.Request.EventoCadastroDTO;
+import br.edu.ufpel.mapacultural.Model.dto.Response.EventoDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping ("/eventos")
+@RequestMapping ("/api/eventos")
 public class EventoController {
 
     private final EventoService service;

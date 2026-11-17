@@ -1,25 +1,19 @@
 package br.edu.ufpel.mapacultural.Controller;
 
 
-import br.edu.ufpel.mapacultural.Model.Artista;
-import br.edu.ufpel.mapacultural.Repository.ArtistaRepository;
-import br.edu.ufpel.mapacultural.Repository.UsuarioRepository;
 import br.edu.ufpel.mapacultural.Service.ArtistaService;
-import br.edu.ufpel.mapacultural.dto.ArtistaCadastroDTO;
-import br.edu.ufpel.mapacultural.dto.ArtistaDTO;
-import br.edu.ufpel.mapacultural.dto.OrganizadorDTO;
+import br.edu.ufpel.mapacultural.Model.dto.Request.ArtistaCadastroDTO;
+import br.edu.ufpel.mapacultural.Model.dto.Response.ArtistaDTO;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/artistas")
+@RequestMapping("/api/artistas")
 public class ArtistaController {
 
     private final ArtistaService service;

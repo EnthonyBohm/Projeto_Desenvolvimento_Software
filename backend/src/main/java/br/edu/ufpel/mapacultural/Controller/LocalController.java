@@ -4,8 +4,8 @@ package br.edu.ufpel.mapacultural.Controller;
 import br.edu.ufpel.mapacultural.Model.Local;
 import br.edu.ufpel.mapacultural.Service.EventoService;
 import br.edu.ufpel.mapacultural.Service.LocalService;
-import br.edu.ufpel.mapacultural.dto.EventoDTO;
-import br.edu.ufpel.mapacultural.dto.LocalCadastroDTO;
+import br.edu.ufpel.mapacultural.Model.dto.Response.EventoDTO;
+import br.edu.ufpel.mapacultural.Model.dto.Request.LocalCadastroDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/locais")
+@RequestMapping("/api/locais")
 public class LocalController {
 
     private final LocalService service;

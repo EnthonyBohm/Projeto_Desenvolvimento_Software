@@ -3,7 +3,7 @@ package br.edu.ufpel.mapacultural.Service;
 import br.edu.ufpel.mapacultural.Model.Local;
 import br.edu.ufpel.mapacultural.Repository.EventoRepository;
 import br.edu.ufpel.mapacultural.Repository.LocalRepository;
-import br.edu.ufpel.mapacultural.dto.LocalCadastroDTO;
+import br.edu.ufpel.mapacultural.Model.dto.Request.LocalCadastroDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
