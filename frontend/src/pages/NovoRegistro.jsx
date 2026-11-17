@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 
-function NovoRegistro() {
+function NovoRegisto() {
     const [nome, setNome] = useState('');
     const [dataEvento, setDataEvento] = useState('');
     const [statusEvento, setStatusEvento] = useState('ativo');
@@ -10,25 +10,35 @@ function NovoRegistro() {
     const [organizadorId, setOrganizadorId] = useState('');
     const [mensagem, setMensagem] = useState('');
 
+    const [locais, setLocais] = useState([]);
+    const [organizadores, setOrganizadores] = useState([]);
+
+    useEffect(() => {
+        api.get('/locais')
+            .then((res) => setLocais(res.data))
+            .catch((err) => console.error('Erro ao buscar locais:', err));
+
+        api.get('/organizadores')
+            .then((res) => setOrganizadores(res.data))
+            .catch((err) => console.error('Erro ao buscar organizadores:', err));
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMensagem('A registar...');
 
         try {
-            // Objeto exatamente alinhado com o EventoCadastroDTO do Java
             const novoEvento = {
                 nome,
-                dataEvento, // formato YYYY-MM-DD
+                dataEvento,
                 statusEvento,
                 descricao,
-                localId: localId ? parseInt(localId) : null,
-                organizadorId: organizadorId ? parseInt(organizadorId) : null
+                localId: parseInt(localId),
+                organizadorId: parseInt(organizadorId)
             };
 
             await api.post('/eventos', novoEvento);
-            setMensagem('Registro criado com sucesso!');
-
-            // Limpar o formulário
+            setMensagem('Registo criado com sucesso!');
             setNome('');
             setDataEvento('');
             setStatusEvento('ativo');
@@ -36,8 +46,8 @@ function NovoRegistro() {
             setLocalId('');
             setOrganizadorId('');
         } catch (error) {
-            console.error('Erro ao criar registro:', error);
-            setMensagem('Erro ao criar registro. Verifique se o Local ID e Organizador ID existem.');
+            console.error('Erro ao criar registo:', error);
+            setMensagem('Erro ao criar registo. Verifique os dados preenchidos.');
         }
     };
 
@@ -91,26 +101,37 @@ function NovoRegistro() {
 
                 <div style={{ display: 'flex', gap: '10px' }}>
                     <div style={{ flex: 1 }}>
-                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ID do Local (Local ID):</label>
-                        <input
-                            type="number"
+                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Local:</label>
+                        <select
                             value={localId}
                             onChange={(e) => setLocalId(e.target.value)}
-                            placeholder="Ex: 1"
                             required
-                            style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc' }}
-                        />
+                            style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc', backgroundColor: '#fff' }}
+                        >
+                            <option value="">Selecione um local...</option>
+                            {locais.map((local) => (
+                                <option key={local.id} value={local.id}>
+                                    {local.nome} (ID: {local.id})
+                                </option>
+                            ))}
+                        </select>
                     </div>
+
                     <div style={{ flex: 1 }}>
-                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>ID do Organizador (Org ID):</label>
-                        <input
-                            type="number"
+                        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Organizador:</label>
+                        <select
                             value={organizadorId}
                             onChange={(e) => setOrganizadorId(e.target.value)}
-                            placeholder="Ex: 1"
                             required
-                            style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc' }}
-                        />
+                            style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc', backgroundColor: '#fff' }}
+                        >
+                            <option value="">Selecione um organizador...</option>
+                            {organizadores.map((org) => (
+                                <option key={org.id} value={org.id}>
+                                    {org.nome || `Organizador #${org.id}`}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </div>
 
@@ -135,4 +156,4 @@ function NovoRegistro() {
     );
 }
 
-export default NovoRegistro;
+export default NovoRegisto;
