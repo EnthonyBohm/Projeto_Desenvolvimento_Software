@@ -110,8 +110,8 @@ function NovoRegisto() {
                         >
                             <option value="">Selecione um local...</option>
                             {locais.map((local) => (
-                                <option key={local.id} value={local.id}>
-                                    {local.nome} (ID: {local.id})
+                                <option key={local.localId} value={local.localId}>
+                                    {local.nome} (ID: {local.localId})
                                 </option>
                             ))}
                         </select>
@@ -127,8 +127,8 @@ function NovoRegisto() {
                         >
                             <option value="">Selecione um organizador...</option>
                             {organizadores.map((org) => (
-                                <option key={org.id} value={org.id}>
-                                    {org.nome || `Organizador #${org.id}`}
+                                <option key={org.usuario_id} value={org.usuario_id}>
+                                    {org.nome} {org.sobrenome} (ID: {org.usuario_id})
                                 </option>
                             ))}
                         </select>
