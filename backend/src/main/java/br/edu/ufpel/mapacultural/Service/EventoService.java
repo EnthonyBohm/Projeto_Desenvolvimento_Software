@@ -45,7 +45,9 @@ public class EventoService {
                 evento.getLocal().getLocalId(),
                 evento.getLocal().getNome(),
                 evento.getLocal().getEndereco(),
-                evento.getLocal().getCapacidade()
+                evento.getLocal().getCapacidade(),
+                evento.getLocal().getLatitude(),
+                evento.getLocal().getLongitude()
         );
     }
 

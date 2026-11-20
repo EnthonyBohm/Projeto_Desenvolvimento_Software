@@ -13,7 +13,7 @@ function App() {
                 <Link to="/" style={{ color: 'white', textDecoration: 'none', fontWeight: 'bold' }}>Eventos</Link>
                 <Link to="/artistas-locais" style={{ color: 'white', textDecoration: 'none', fontWeight: 'bold' }}>Artistas & Locais</Link>
                 <Link to="/mapa" style={{ color: 'white', textDecoration: 'none', fontWeight: 'bold' }}>Mapa Cultural</Link>
-                <Link to="/cadastro" style={{ color: 'white', textDecoration: 'none', fontWeight: 'bold' }}>Novo Registo</Link>
+                <Link to="/cadastro" style={{ color: 'white', textDecoration: 'none', fontWeight: 'bold' }}>Novo Registro</Link>
             </nav>
 
             {/* Gestor de Páginas */}

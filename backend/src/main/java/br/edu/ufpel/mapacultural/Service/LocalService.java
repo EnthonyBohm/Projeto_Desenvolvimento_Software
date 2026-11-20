@@ -7,6 +7,7 @@ import br.edu.ufpel.mapacultural.dto.LocalCadastroDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -17,10 +18,12 @@ public class LocalService {
 
     private final LocalRepository localRepository;
     private final EventoRepository eventoRepository;
+    private final GeocodingService geocodingService;
 
-    public LocalService(LocalRepository localRepository, EventoRepository eventoRepository) {
+    public LocalService(LocalRepository localRepository, EventoRepository eventoRepository, GeocodingService geocodingService) {
         this.localRepository = localRepository;
         this.eventoRepository = eventoRepository;
+        this.geocodingService = geocodingService;
     }
 
     //===========================       GET       ========================
@@ -51,11 +54,22 @@ public class LocalService {
         local.setEndereco(dto.endereco());
         local.setCapacidade(dto.capacidade());
 
-        Local local_salvo = localRepository.save(local);
+        try {
+            Optional<GeocodingService.Coordinates> coordenadas =
+                    geocodingService.buscarCoordenadas(dto.endereco());
 
-        return local_salvo;
+            coordenadas.ifPresent(coord -> {
+                local.setLatitude(coord.latitude());
+                local.setLongitude(coord.longitude());
+            });
+
+        } catch (RestClientException e) {
+            System.err.println("Erro ao buscar coordenadas: " + e.getMessage());
+        }
+
+        return localRepository.save(local);
+
     }
-
 
 
 //========================= DELETE ========================

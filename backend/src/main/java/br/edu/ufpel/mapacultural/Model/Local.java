@@ -16,4 +16,10 @@ public class Local {
     private String          nome;
     private String          endereco;
     private Integer         capacidade;
+
+    @Column(name = "latitude")
+    private Double latitude;
+
+    @Column(name = "longitude")
+    private Double longitude;
 }

@@ -15,6 +15,8 @@ public record EventoDTO(
         Integer         local_id,
         String          local_nome,
         String          local_endereco,
-        Integer         local_capacidade
+        Integer         local_capacidade,
+        Double          local_latitude,
+        Double          local_longitude
 ) {
 }
